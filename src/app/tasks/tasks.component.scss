@@ -1,0 +1,41 @@
+div {
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: #433352;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #433352;
+  padding: 0 1rem;
+}
+
+h1 {
+  margin: 0;
+  padding: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #c3b3d1;
+}
+
+#add-task {
+  font: inherit;
+  background-color: #8134ca;
+  color: white;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#fallback {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #a3a0c9;
+  margin: 2rem;
+}
+
+
+
