@@ -11,16 +11,14 @@
     }
     @for(singleTask of userTasks; track singleTask.id){
     <li>
-      <app-task [task]="singleTask" (taskCompleted)="onTaskCompleted($event)"></app-task>
+      <app-task [task]="singleTask"></app-task>
     </li>
     }
   </ul>
   @if(isVisible){
   <app-add-task-form
-    [isVisible]="isVisible" 
     [selectedUserId]="selectedUserId"
-    (closePopup)="onClosePopup()" 
-    (saveTask)="onSaveTask($event)" >
+    (closePopup)="onClosePopup()" >
   </app-add-task-form>  
   }
 </div>

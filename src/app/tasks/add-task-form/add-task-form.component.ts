@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { Task } from '../../data/tasks';
 import { FormsModule } from '@angular/forms';
+import { TasksService } from '../tasks.service';
 
 @Component({
   selector: 'app-add-task-form',
@@ -9,10 +10,9 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './add-task-form.component.scss',
 })
 export class AddTaskFormComponent {
-  @Input() isVisible!: boolean;
   @Input() selectedUserId!: string;
   @Output() closePopup = new EventEmitter<void>();
-  @Output() saveTask = new EventEmitter<Task>();
+  private tasksService = inject(TasksService);
 
   title: string = '';
   dueDate: string = '';
@@ -30,6 +30,7 @@ export class AddTaskFormComponent {
       dueDate: new Date(this.dueDate),
       description: this.summary,
     };
-    this.saveTask.emit(task);
+    this.tasksService.addTask(task);
+    this.closePopup.emit();
   }
 }

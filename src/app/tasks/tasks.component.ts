@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { TaskComponent } from './task/task.component';
 import { DUMMY_TASKS, Task } from '../data/tasks';
 import { AddTaskFormComponent } from './add-task-form/add-task-form.component';
+import { TasksService } from './tasks.service';
 
 @Component({
   selector: 'app-tasks',
@@ -13,19 +14,15 @@ export class TasksComponent {
   isVisible : boolean = false;
   @Input({required : true}) selectedUserId! : string;
   @Input({required : true}) selectedUserName! : string;
-  tasks = DUMMY_TASKS;
+
+  constructor(private tasksService: TasksService) {}
 
   get userTasks() {
-    return this.tasks.filter(task => task.userId === this.selectedUserId);
+    return this.tasksService.getUserTasks(this.selectedUserId);
   }
 
   onAddTask() {
     this.isVisible = true;
-  }
-
-  onSaveTask(task : Task) {
-    this.isVisible = false;
-    this.tasks.push(task);
   }
 
   onClosePopup() {
@@ -33,7 +30,7 @@ export class TasksComponent {
   }
 
   onTaskCompleted(taskId: string) {
-    this.tasks = this.tasks.filter(task => task.id !== taskId);
+    this.tasksService.completeTask(taskId);
   }
 
 }
