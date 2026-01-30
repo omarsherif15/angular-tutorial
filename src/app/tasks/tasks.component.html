@@ -1,24 +1,22 @@
 <div>
   <header>
-    <h1>{{selectedUserName}}'s Tasks</h1>
+    <h1>{{ userName() }}'s Tasks</h1>
     <menu>
       <button id="add-task" (click)="onAddTask()">Add Task</button>
     </menu>
   </header>
   <ul>
-    @if(userTasks.length === 0){
-    <p id="fallback">No tasks found. Add a new task to get started!</p>
+    @if (userTasks.length === 0) {
+      <p id="fallback">No tasks found. Add a new task to get started!</p>
     }
-    @for(singleTask of userTasks; track singleTask.id){
-    <li>
-      <app-task [task]="singleTask"></app-task>
-    </li>
+    @for (singleTask of userTasks; track singleTask.id) {
+      <li>
+        <app-task [task]="singleTask"></app-task>
+      </li>
     }
   </ul>
-  @if(isVisible){
-  <app-add-task-form
-    [selectedUserId]="selectedUserId"
-    (closePopup)="onClosePopup()" >
-  </app-add-task-form>  
+  @if (isVisible) {
+    <app-add-task-form [selectedUserId]="userId()" (closePopup)="onClosePopup()">
+    </app-add-task-form>
   }
 </div>
